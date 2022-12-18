@@ -14,6 +14,8 @@ function addTodo(event)
     const newTodo = document.createElement('li');
     newTodo.innerText = todoInput.value;
 
+    saveLocalTodos(todoInput.value)
+
     newTodo.classList.add('todo-item');
     todoDiv.appendChild(newTodo);
     todoInput.value = "";
@@ -30,6 +32,7 @@ function addTodo(event)
 
     todoList.appendChild(todoDiv);
 }
+
 todoInput.addEventListener('keydown', function(event){
     if(event.keycode == 13)
     {
@@ -37,3 +40,17 @@ todoInput.addEventListener('keydown', function(event){
         addTodo();
     }
 })
+
+function saveLocalTodos(todo)
+{
+    let todos;
+    if (localStorage.getItem("todos") === null)
+    {
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem("todos"));
+    }
+
+    todos.push(todo);
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
