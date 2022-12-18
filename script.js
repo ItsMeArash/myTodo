@@ -30,3 +30,10 @@ function addTodo(event)
 
     todoList.appendChild(todoDiv);
 }
+todoInput.addEventListener('keydown', function(event){
+    if(event.keycode == 13)
+    {
+        event.preventDefault();
+        addTodo();
+    }
+})
